@@ -26,7 +26,6 @@ export const supportsRanges = true;
 export const supportedRangeStrategies: RangeStrategy[] = [
   'bump',
   'widen',
-  'pin',
   'replace',
 ];
 
@@ -95,6 +94,10 @@ function minSatisfyingVersion(
   return minSatisfying(versions.map(vtrim), vtrim(range));
 }
 
+const getPinnedValue = (newVersion: string): string => {
+  return pin({ to: vtrim(newVersion) });
+};
+
 const getNewValue = ({
   currentValue,
   rangeStrategy,
@@ -122,9 +125,6 @@ const getNewValue = ({
             newVersion,
           });
         }
-        break;
-      case 'pin':
-        newValue = pin({ to: vtrim(newVersion) });
         break;
       case 'bump':
         newValue = bump({ range: vtrim(currentValue), to: vtrim(newVersion) });
@@ -185,6 +185,7 @@ export const api: VersioningApi = {
   getSatisfyingVersion,
   minSatisfyingVersion,
   getNewValue,
+  getPinnedValue,
   sortVersions,
 };
 export default api;

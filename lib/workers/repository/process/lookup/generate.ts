@@ -54,12 +54,15 @@ export async function generateUpdate(
 
   if (currentValue) {
     try {
-      update.newValue = versioningApi.getNewValue({
-        currentValue,
-        rangeStrategy,
-        currentVersion,
-        newVersion,
-      })!;
+      update.newValue =
+        rangeStrategy === 'pin'
+          ? (versioningApi.getPinnedValue?.(newVersion) ?? newVersion)
+          : (update.newValue = versioningApi.getNewValue({
+              currentValue,
+              rangeStrategy,
+              currentVersion,
+              newVersion,
+            })!);
     } catch (err) /* istanbul ignore next */ {
       logger.warn(
         { err, currentValue, rangeStrategy, currentVersion, newVersion },
