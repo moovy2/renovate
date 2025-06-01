@@ -432,6 +432,11 @@ describe('modules/versioning/nuget/index', () => {
     );
   });
 
+  it('returns a pinned value', () => {
+    expect(nuget.getPinnedValue?.('a')).toBe('');
+    expect(nuget.getPinnedValue?.('1.2.3')).toBe('[1.2.3]');
+  });
+
   describe('getNewValue()', () => {
     it('returns newVersion if the range is version too', () => {
       expect(

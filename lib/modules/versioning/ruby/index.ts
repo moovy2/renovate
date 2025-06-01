@@ -12,7 +12,7 @@ import { regEx } from '../../../util/regex';
 import type { NewValueConfig, VersioningApi } from '../types';
 import { isSingleOperator, isValidOperator } from './operator';
 import { ltr, parse as parseRange } from './range';
-import { bump, pin, replace, widen } from './strategies';
+import { bump, replace, widen } from './strategies';
 import { parse as parseVersion } from './version';
 
 export const id = 'ruby';
@@ -93,10 +93,6 @@ function minSatisfyingVersion(
 ): string | null {
   return minSatisfying(versions.map(vtrim), vtrim(range));
 }
-
-const getPinnedValue = (newVersion: string): string => {
-  return pin({ to: vtrim(newVersion) });
-};
 
 const getNewValue = ({
   currentValue,
@@ -185,7 +181,6 @@ export const api: VersioningApi = {
   getSatisfyingVersion,
   minSatisfyingVersion,
   getNewValue,
-  getPinnedValue,
   sortVersions,
 };
 export default api;

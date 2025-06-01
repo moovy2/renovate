@@ -98,6 +98,10 @@ describe('modules/versioning/cargo/index', () => {
     expect(!!semver.isSingleVersion(version)).toBe(expected);
   });
 
+  it('returns a pinned value', () => {
+    expect(semver.getPinnedValue?.('1.2.3')).toBe('=1.2.3');
+  });
+
   it.each`
     currentValue             | rangeStrategy | currentVersion | newVersion      | expected
     ${'~0.7'}                | ${'replace'}  | ${'0.7.3'}     | ${'0.8.5'}      | ${'~0.8'}

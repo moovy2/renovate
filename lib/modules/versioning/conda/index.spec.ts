@@ -173,6 +173,10 @@ describe('modules/versioning/conda/index', () => {
     expect(api.isGreaterThan(a, b)).toBe(result);
   });
 
+  it('returns a pinned value', () => {
+    expect(api.getPinnedValue?.('1.2.3')).toBe('==1.2.3');
+  });
+
   it.each`
     currentValue | rangeStrategy | currentVersion | newVersion | expected
     ${'*'}       | ${'bump'}     | ${'1.0.0'}     | ${'1.2.3'} | ${'>=1.2.3'}
