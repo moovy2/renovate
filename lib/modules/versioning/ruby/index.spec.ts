@@ -250,6 +250,11 @@ describe('modules/versioning/ruby/index', () => {
     expect(!!semverRuby.isSingleVersion(version)).toBe(expected);
   });
 
+  it('returns a pinned value', () => {
+    expect(semverRuby.getPinnedValue?.('1.2.3')).toBe('1.2.3');
+    expect(semverRuby.getPinnedValue?.('v1.2.3')).toBe('1.2.3');
+  });
+
   it.each`
     currentValue             | rangeStrategy        | currentVersion | newVersion   | expected
     ${'1.0.3'}               | ${'pin'}             | ${'1.0.3'}     | ${'1.2.3'}   | ${'1.2.3'}

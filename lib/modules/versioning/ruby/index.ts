@@ -94,6 +94,10 @@ function minSatisfyingVersion(
   return minSatisfying(versions.map(vtrim), vtrim(range));
 }
 
+const getPinnedValue = (value: string): string => {
+  return vtrim(value);
+};
+
 const getNewValue = ({
   currentValue,
   rangeStrategy,
@@ -180,6 +184,7 @@ export const api: VersioningApi = {
   matches,
   getSatisfyingVersion,
   minSatisfyingVersion,
+  getPinnedValue,
   getNewValue,
   sortVersions,
 };

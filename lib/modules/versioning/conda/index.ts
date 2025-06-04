@@ -64,7 +64,7 @@ function isSingleVersion(input: string): boolean {
 }
 
 function getPinnedValue(newVersion: string): string {
-  return '==' + newVersion;
+  return `==${newVersion}`;
 }
 
 function getNewValue({

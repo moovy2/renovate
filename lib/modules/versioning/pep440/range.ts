@@ -99,7 +99,7 @@ interface Range {
 }
 
 export function getPinnedValue(newVersion: string): string {
-  return '==' + newVersion;
+  return `==${newVersion}`;
 }
 
 export function getNewValue({
